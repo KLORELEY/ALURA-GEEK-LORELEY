@@ -1,17 +1,21 @@
 body {
     font-family: "Playwrite NG Modern", cursive;
-    font-weight: 400;
+    font-weight:400;
     font-style: normal;
     color: purple;
-}
+    background-color: gainsboro;
+  }
 
-header {
+
+  
+  header {
     width: 100%;
     display: flex;
     justify-content: center;
     background-color: #bbbbbb;
     padding: 20px 0; /* Reducir el padding para disminuir la altura */
 }
+
 
 .container {
     width: 100%;
@@ -43,6 +47,7 @@ header {
     margin: 0;
 }
 
+
 nav {
     display: flex;
     justify-content: center;
@@ -69,94 +74,67 @@ nav a {
 }
 
 nav a:hover {
-    color: purple;
+    color:purple;
     text-decoration: underline;
 }
 
-/*main*/
 
-.main-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color:gainsboro;
-}
-
-.product-section, .form-section {
-    flex: 1;
-    margin: 0 20px;
-}
-
-.product-section {
-    flex: 2;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 24px;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
-    gap: 20px;
-}
-
-.product-card {
-    background-color: white;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-align: center;
-    border-radius: 10px;
-}
-
-.product-card img {
+.form-container {
     width: 100%;
-    height: auto;
+    max-width: 800px; /* Ajusta este valor según sea necesario */
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color:snow;
 }
 
-.product-card p {
-    margin: 5px 0; 
-    font-size: 16px; 
+form{
+    margin: 40px 0;
 }
 
-.product-card:hover{
+form label, form legend{
+    display: block;
+    font-size: 20px;
+    margin:0 0 10px
+}
+
+.input-padron{
+    display: block;
+    margin: 0 0 20px;
+    padding:10px 25px;
+    width: 50%;
+}
+
+.checkbox{
+    margin: 20px 0;
+}
+
+.enviar{
+    width: 40%;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color:#ffffff;
+    background:plum;
+    border: none;
+    border-radius:5px;
+    transition: 1s all;
+    cursor:pointer;
+}
+
+.enviar:hover{
+    background: purple;
     transform:scale(1.2) ;
 }
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-form input, form button {
-    padding: 10px;
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-form button {
-    background-color:plum;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color:purple;
-}
+    
 
 footer{
     text-align: center;
     background:#bbbbbb;
     padding: 30px;
-    width: 100%;
-    height: auto;
 }
-
-
 
 /* Mobile devices (up to 600px) */
 @media (max-width: 600px) {
@@ -166,17 +144,15 @@ footer{
     }
 
     .logo-text {
-        flex-direction:row;
+        flex-direction: column;
         text-align: center;
     }
 
     .image {
         height: 200px; /* Adjust as needed */
         margin-right: 0;
-        
     }
 
-   
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -202,11 +178,6 @@ footer{
         width: 90%;
         padding: 10px;
     }
-
-    .form-section h2{
-        font-size: 20px;
-        padding-top: 15px;;
-    }
 }
 
 /* Tablet devices (601px to 900px) */
@@ -222,8 +193,7 @@ footer{
     .form-container {
         width: 80%;
     }
-
- 
+}
 
 /* Desktop devices (over 900px) */
 @media (min-width: 901px) {
