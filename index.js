@@ -4,10 +4,8 @@ function toggleMenu() {
 }
 
 
-// sección de productos
-
 document.addEventListener('DOMContentLoaded', function() {
-    const contenedorProductos = document.getElementById('productGrid');
+    const contenedorProductos = document.getElementById('product-grid');
     const form = document.getElementById('productForm');
     let productos = [];
 

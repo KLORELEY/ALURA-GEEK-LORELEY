@@ -110,7 +110,7 @@ h2 {
     background-color: white;
     width: 200px; /* Ancho fijo para la tarjeta */
     height: 300px; /* Alto fijo para la tarjeta */
-    padding: 5px;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     border-radius: 10px;
@@ -136,7 +136,7 @@ h2 {
 }
 
 .delete-button {
-    position:static;/*ABSOLUTE*/
+    position:absolute;
     bottom: 10px;
     right: 10px;
     background: none;
