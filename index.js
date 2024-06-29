@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para mostrar productos
     function mostrarProductos() {
         if (!contenedorProductos) return;
-
+    
         contenedorProductos.innerHTML = '';
-
+    
         if (productos.length === 0) {
             const mensaje = document.createElement('p');
             mensaje.classList.add('no-products');
@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+    
 
     window.eliminarProducto = function(index) {
         productos.splice(index, 1);
