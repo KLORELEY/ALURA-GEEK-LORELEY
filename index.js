@@ -6,73 +6,12 @@ function toggleMenu() {
 
 // sección de productos
 
-document.addEventListener('DOMContentLoaded', function () {
-    const productos = [
-    {
-        nombre:'producto 1',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 2',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 3',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 4',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 5',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 6',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 7',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 8',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 9',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 10',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 11',
-        precio:'00.00',
-        imagen:''
-    },
-    {
-        nombre:'producto 12',
-        precio:'00.00',
-        imagen:''
-    }
-
-    ]; 
-
+document.addEventListener('DOMContentLoaded', function() {
     const contenedorProductos = document.getElementById('productGrid');
     const form = document.getElementById('productForm');
+    let productos = [];
+
+    // Función para mostrar productos
     function mostrarProductos() {
         contenedorProductos.innerHTML = '';
         
@@ -97,4 +36,34 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
-}  
+
+    // Función para eliminar producto
+    window.eliminarProducto = function(index) {
+        productos.splice(index, 1);
+        mostrarProductos();
+    };
+
+    // Cargar productos desde el archivo JSON
+    fetch('productos.json')
+        .then(response => response.json())
+        .then(data => {
+            productos = data;
+            mostrarProductos();
+        });
+
+    // Función para agregar producto
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nuevoProducto = {
+            nombre: document.getElementById('nombre').value,
+            precio: parseFloat(document.getElementById('precio').value),
+            imagen: document.getElementById('imagen').value
+        };
+        
+        productos.push(nuevoProducto);
+        mostrarProductos();
+        
+        form.reset();
+    });
+});

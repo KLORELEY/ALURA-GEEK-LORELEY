@@ -104,13 +104,14 @@ h2 {
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
-    gap: 20px;
+    gap: 25px;
 }
-
 .product-card {
     background-color: white;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 200px; /* Ancho fijo para la tarjeta */
+    height: 300px; /* Alto fijo para la tarjeta */
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     border-radius: 10px;
     position: relative;
@@ -119,9 +120,11 @@ h2 {
 
 .product-card .product-image {
     width: 100%;
-    height: auto;
+    height: 70%; /* Ajusta según sea necesario */
+    object-fit: cover; /* Asegura que la imagen se ajuste al contenedor */
     margin-bottom: 10px;
 }
+
 
 .product-card p {
     margin: 5px 0; 
@@ -133,7 +136,7 @@ h2 {
 }
 
 .delete-button {
-    position: absolute;
+    position:static;/*ABSOLUTE*/
     bottom: 10px;
     right: 10px;
     background: none;
