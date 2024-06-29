@@ -5,14 +5,34 @@ function toggleMenu() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Productos
     const contenedorProductos = document.getElementById('product-grid');
-    const form = document.getElementById('productForm');
+    const productForm = document.getElementById('productForm');
     let productos = [];
+
+    if (productForm) {
+        productForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nuevoProducto = {
+                nombre: document.getElementById('nombre').value,
+                precio: parseFloat(document.getElementById('precio').value),
+                imagen: document.getElementById('imagen').value
+            };
+
+            productos.push(nuevoProducto);
+            mostrarProductos();
+
+            productForm.reset();
+        });
+    }
 
     // Función para mostrar productos
     function mostrarProductos() {
+        if (!contenedorProductos) return;
+
         contenedorProductos.innerHTML = '';
-        
+
         if (productos.length === 0) {
             const mensaje = document.createElement('p');
             mensaje.classList.add('no-products');
@@ -35,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Función para eliminar producto
     window.eliminarProducto = function(index) {
         productos.splice(index, 1);
         mostrarProductos();
@@ -49,19 +68,37 @@ document.addEventListener('DOMContentLoaded', function() {
             mostrarProductos();
         });
 
-    // Función para agregar producto
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const nuevoProducto = {
-            nombre: document.getElementById('nombre').value,
-            precio: parseFloat(document.getElementById('precio').value),
-            imagen: document.getElementById('imagen').value
-        };
-        
-        productos.push(nuevoProducto);
-        mostrarProductos();
-        
-        form.reset();
-    });
+    // Formulario de contacto
+    const contactForm = document.getElementById('contactForm');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nombreApellido = document.getElementById('nombreapellido').value;
+            const correoElectronico = document.getElementById('correoelectronico').value;
+            const telefono = document.getElementById('telefono').value;
+            const mensaje = document.getElementById('mensaje').value;
+            const contacto = document.querySelector('input[name="contacto"]:checked').value;
+            const novedades = document.getElementById('novedades').checked;
+
+            const formData = {
+                nombreApellido,
+                correoElectronico,
+                telefono,
+                mensaje,
+                contacto,
+                novedades
+            };
+
+            let storedData = JSON.parse(localStorage.getItem('contactos')) || [];
+            storedData.push(formData);
+            localStorage.setItem('contactos', JSON.stringify(storedData));
+
+            console.log(JSON.parse(localStorage.getItem('contactos')));
+
+            alert('Formulario enviado correctamente. Los datos han sido almacenados localmente.');
+            contactForm.reset();
+        });
+    }
 });

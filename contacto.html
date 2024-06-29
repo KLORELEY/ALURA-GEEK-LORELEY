@@ -33,32 +33,34 @@
     </header>
     <main>
         <div class="form-container">
-            <form>
+            <form id="contactForm">
                 <label for="nombreapellido">Nombre y Apellido</label>
-                <input type="text" id="nombreapellido" class="input-padron" required>
-
+                <input type="text" id="nombreapellido" name="nombreapellido" class="input-padron" required>
+            
                 <label for="correoelectronico">Correo Electrónico</label>
-                <input type="email" id="correoelectronico" class="input-padron" required placeholder="email@dominio.com">
-
+                <input type="email" id="correoelectronico" name="correoelectronico" class="input-padron" required placeholder="email@dominio.com">
+            
                 <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" class="input-padron" required placeholder="(xx) xxxx xxxx">
-
+                <input type="tel" id="telefono" name="telefono" class="input-padron" required placeholder="(xx) xxxx xxxx">
+            
                 <label for="mensaje">Mensaje</label>
-                <textarea cols="70" rows="10" id="mensaje" class="input-padron" required></textarea>
-
+                <textarea cols="70" rows="10" id="mensaje" name="mensaje" class="input-padron" required></textarea>
+            
                 <fieldset>
                     <legend>¿Cómo le gustaría que lo contactáramos?</legend>
                     <label for="radio-email"><input type="radio" name="contacto" value="email" id="radio-email">Email</label>
                     <label for="radio-telefono"><input type="radio" name="contacto" value="telefono" id="radio-telefono">Teléfono</label>
                     <label for="radio-whatsapp"><input type="radio" name="contacto" value="whatsapp" id="radio-whatsapp" checked>Whatsapp</label>
                 </fieldset>
-                <label class="checkbox"><input type="checkbox" checked>¿Le gustaría recibir novedades de Fashion Geek?</label>
+                <label class="checkbox"><input type="checkbox" id="novedades" name="novedades" checked>¿Le gustaría recibir novedades de Fashion Geek?</label>
                 <input type="submit" value="Enviar formulario" class="enviar">
             </form>
+            
         </div>
     </main>
     <footer>
         <p class="pie-de-pagina"> Challenge Alura Geek-2024</p>
-    </footer>   
+    </footer>  
+    <script src="index.js"></script> 
 </body>
 </html>
