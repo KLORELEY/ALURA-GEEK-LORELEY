@@ -1,62 +1,62 @@
 [
     {
         "nombre": "Producto 1",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto1.jpeg"
     },
     {
         "nombre": "Producto 2",
-        "precio": 49.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto2.jpeg"
     },
     {
         "nombre": "Producto 3",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto3.jpeg"
     },
     {
         "nombre": "Producto 4",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto4.jpeg"
     },
     {
         "nombre": "Producto 5",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto5.jpeg"
     },
     {
         "nombre": "Producto 6",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto6.jpeg"
     },
     {
         "nombre": "Producto 7",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto7.jpeg"
     },
     {
         "nombre": "Producto 8",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto8.jpeg"
     },
     {
         "nombre": "Producto 9",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto9.jpeg"
     },
     {
         "nombre": "Producto 10",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto10.jpeg"
     },
     {
         "nombre": "Producto 11",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto11.jpeg"
     }, 
     {
         "nombre": "Producto 12",
-        "precio": 29.99,
+        "precio": 1.00,
         "imagen": "Imagenes/producto12.jpeg"
     }
 ]
