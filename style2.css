@@ -90,6 +90,16 @@ nav a:hover {
     text-decoration: underline;
 }
 
+
+.hamburger-menu .main-menu {
+    display: none;
+}
+
+.hamburger-menu .main-menu.active {
+    display: block;
+}
+
+
 .main-container {
     display: flex;
     justify-content: space-between;
@@ -269,14 +279,6 @@ footer {
     line-height: 1.5;
 }
 
-.hamburger-menu .main-menu {
-    display: none;
-}
-
-.hamburger-menu .main-menu.active {
-    display: block;
-}
-
 @media (min-width: 601px) {
     .hamburger-menu .main-menu {
         display: flex;
@@ -454,5 +456,5 @@ footer {
         width: 50%;
         padding: 10px 25px;
     }
-
+}
    

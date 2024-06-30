@@ -1,0 +1,14 @@
+{
+  "productos": [],
+  "contactos": [
+    {
+      "id": "2271",
+      "nombreApellido": "karen Trejo",
+      "correoElectronico": "karen.trejo.limon@hotmail.com",
+      "telefono": "3334697421",
+      "mensaje": "holi",
+      "contacto": "whatsapp",
+      "novedades": true
+    }
+  ]
+}

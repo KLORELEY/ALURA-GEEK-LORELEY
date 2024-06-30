@@ -1,105 +1,146 @@
 function toggleMenu() {
-    const nav = document.querySelector('.main-menu');
-    nav.classList.toggle('active');
+  const nav = document.querySelector(".main-menu");
+  nav.classList.toggle("active");
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const productForm = document.getElementById("productForm");
+  const contenedorProductos = document.getElementById("product-grid");
+  let productos = [];
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Productos
-    const contenedorProductos = document.getElementById('product-grid');
-    const productForm = document.getElementById('productForm');
-    let productos = [];
+  if (productForm && contenedorProductos) {
+    // Aquí verifica si ambos elementos existen//
+    productForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-    if (productForm) {
-        productForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+      const nuevoProducto = {
+        nombre: document.getElementById("nombre").value,
+        precio: parseFloat(document.getElementById("precio").value),
+        imagen: document.getElementById("imagen").value,
+      };
 
-            const nuevoProducto = {
-                nombre: document.getElementById('nombre').value,
-                precio: parseFloat(document.getElementById('precio').value),
-                imagen: document.getElementById('imagen').value
-            };
+      fetch("http://localhost:3000/productos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nuevoProducto),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          productos.push(data);
+          mostrarProductos();
+          alert("Producto creado");
+        })
+        .catch((error) => console.error("Error:", error));
 
-            productos.push(nuevoProducto);
-            mostrarProductos();
+      productForm.reset();
+    });
 
-            productForm.reset();
-        });
-    }
-
-    // Función para mostrar productos
     function mostrarProductos() {
-        if (!contenedorProductos) return;
-    
-        contenedorProductos.innerHTML = '';
-    
-        if (productos.length === 0) {
-            const mensaje = document.createElement('p');
-            mensaje.classList.add('no-products');
-            mensaje.textContent = 'No se han agregado productos.';
-            contenedorProductos.appendChild(mensaje);
-        } else {
-            productos.forEach((producto, index) => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('product-card');
-                tarjeta.innerHTML = `
-                    <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
-                    <p>${producto.nombre}</p>
-                    <p>$${producto.precio.toFixed(2)}</p>
-                    <button class="delete-button" onclick="eliminarProducto(${index})">
-                        <img src="Imagenes/basurero-gris.png" alt="Eliminar producto">
-                    </button>
-                `;
-                contenedorProductos.appendChild(tarjeta);
-            });
-        }
-    }
-    
+      contenedorProductos.innerHTML = "";
 
-    window.eliminarProducto = function(index) {
-        productos.splice(index, 1);
-        mostrarProductos();
+      if (productos.length === 0) {
+        const mensaje = document.createElement("p");
+        mensaje.classList.add("no-products");
+        mensaje.textContent = "No se han agregado productos.";
+        contenedorProductos.appendChild(mensaje);
+      } else {
+        productos.forEach((producto) => {
+          const tarjeta = document.createElement("div");
+          tarjeta.classList.add("product-card");
+          tarjeta.innerHTML = `
+            <img src="${producto.imagen}" alt="${
+            producto.nombre
+          }" class="product-image">
+            <p>${producto.nombre}</p>
+            <p>$${producto.precio.toFixed(2)}</p>
+            <button class="delete-button" onclick="eliminarProducto('${
+              producto.id
+            }')">
+                <img src="Imagenes/basurero-gris.png" alt="Eliminar producto">
+            </button>
+          `;
+          contenedorProductos.appendChild(tarjeta);
+        });
+      }
+    }
+
+    window.eliminarProducto = function (id) {
+      fetch(`http://localhost:3000/productos/${id}`, {
+        method: "DELETE",
+      })
+        .then(() => {
+          productos = productos.filter((producto) => producto.id !== id);
+          mostrarProductos();
+        })
+        .catch((error) => console.error("Error:", error));
     };
 
-    // Cargar productos desde el archivo JSON
-    fetch('productos.json')
-        .then(response => response.json())
-        .then(data => {
-            productos = data;
-            mostrarProductos();
-        });
+    // Esto va a cargar  productos desde el servidor JSON//
+    fetch("http://localhost:3000/productos")
+      .then((response) => response.json())
+      .then((data) => {
+        productos = data;
+        mostrarProductos();
+      })
+      .catch((error) => console.error("Error:", error));
+  }
 
-    // Formulario de contacto
-    const contactForm = document.getElementById('contactForm');
+  // Formulario de contacto//
+  const contactForm = document.getElementById("contactForm");
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-            const nombreApellido = document.getElementById('nombreapellido').value;
-            const correoElectronico = document.getElementById('correoelectronico').value;
-            const telefono = document.getElementById('telefono').value;
-            const mensaje = document.getElementById('mensaje').value;
-            const contacto = document.querySelector('input[name="contacto"]:checked').value;
-            const novedades = document.getElementById('novedades').checked;
+      const nombreApellido = document.getElementById("nombreapellido").value;
+      const correoElectronico =
+        document.getElementById("correoelectronico").value;
+      const telefono = document.getElementById("telefono").value;
+      const mensaje = document.getElementById("mensaje").value;
+      const contacto = document.querySelector(
+        'input[name="contacto"]:checked'
+      ).value;
+      const novedades = document.getElementById("novedades").checked;
 
-            const formData = {
-                nombreApellido,
-                correoElectronico,
-                telefono,
-                mensaje,
-                contacto,
-                novedades
-            };
+      const formData = {
+        nombreApellido,
+        correoElectronico,
+        telefono,
+        mensaje,
+        contacto,
+        novedades,
+      };
 
-            let storedData = JSON.parse(localStorage.getItem('contactos')) || [];
-            storedData.push(formData);
-            localStorage.setItem('contactos', JSON.stringify(storedData));
+      fetch("http://localhost:3000/contactos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          let storedData = JSON.parse(localStorage.getItem("contactos")) || [];
+          storedData.push(data);
+          localStorage.setItem("contactos", JSON.stringify(storedData));
+          console.log(
+            "contactos guardados en localStorage:",
+            JSON.parse(localStorage.getItem("contactos"))
+          );
 
-            console.log(JSON.parse(localStorage.getItem('contactos')));
+          contactForm.reset();
+        })
+        .catch((error) => console.error("Error:", error));
+    });
 
-            alert('Formulario enviado correctamente. Los datos han sido almacenados localmente.');
-            contactForm.reset();
-        });
-    }
+    // Verificar contactos guardados en el servidor JSON//
+    fetch("http://localhost:3000/contactos")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Contactos guardados en el servidor JSON:", data);
+      })
+      .catch((error) => console.error("Error:", error));
+  }
 });
